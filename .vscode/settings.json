@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "compiler.h": "c",
+        "lecture.h": "c",
+        "compile.h": "c"
+    }
+}
