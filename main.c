@@ -6,10 +6,6 @@
 #include "execution.h"
 
 
-//caca prout
-
-
-
 
 int main(void) {
 
