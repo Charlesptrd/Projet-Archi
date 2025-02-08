@@ -1,6 +1,6 @@
 ici: read 1000
      push 1000
-     push# 40000
+     push# 1000
      op 0
      jnz fin
      push 1000

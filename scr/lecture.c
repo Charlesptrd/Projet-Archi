@@ -226,7 +226,7 @@ int ecrire_programme_tranforme(Instruction* PC[500]) {
     }
     int i=0;
     while (PC[i] != NULL) {
-        fprintf(fichier, "%02d %04hx\n", PC[i]->code, PC[i]->donnée);
+        fprintf(fichier, "%02hx %04hx\n", PC[i]->code, PC[i]->donnée);
         i++;
     }
     fclose(fichier);

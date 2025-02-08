@@ -3,7 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "compile.h"
-#include "lecture.h"
+
+int extraire_instructions(char* nom, Instruction* PC[500]);
+
+
+
+
 
 
 
