@@ -37,7 +37,6 @@ int main(void) {
 
     Instruction* PC[500];
     for (int i=0; i< 500; i++) {
-        printf("%d\n", i);
         PC[i] = NULL;
     }
 
