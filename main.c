@@ -35,19 +35,34 @@ int main(void) {
     tout_supprimer(PC1);
     printf("\033[30;4;47mDémarrage de l'éxécution\033[0m\n");
 
-    Instruction* PC[500];
+    Instruction* l_instructions[500];
+    short int PC = 0;
     for (int i=0; i< 500; i++) {
-        PC[i] = NULL;
+        l_instructions[i] = NULL;
     }
 
     printf("\033[30;4;47mRécupération des instructions\033[0m\n");
-    if (extraire_instructions("hexa.txt", PC) == 0) printf("\033[31mErreur lors de la récupération des instructions\033[0m\n");
-    afficher_liste_instructions(PC);
+
+    short int memoire[5000];
+    short int SP = 0;
+
+    if (extraire_instructions("hexa.txt", l_instructions) == 0) printf("\033[31mErreur lors de la récupération des instructions\033[0m\n");
+    afficher_liste_instructions(l_instructions);
+
+    printf("\033[30;4;47mExecution des instructions\033[0m\n");
+
+    while (execution_instruction(&PC, &SP, l_instructions, memoire) == 0) {
+        
+        afficher_memoire(memoire, SP);
+        continue;
+    }
+    printf("\033[30;4;47mExecution terminee.\033[0m\n");
+
 
 
 
     printf("\033[30;4;47mLibération de la mémoire\033[0m\n");
-    tout_supprimer(PC);
+    tout_supprimer(l_instructions);
     printf("\033[30;4;47mLe programme est fini\033[0m\n");
     return 0;
 }

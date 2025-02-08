@@ -50,11 +50,6 @@ void tout_supprimer(Instruction* PC[500]){
     return;
 }
 
-void execution_instruction(Liste_instructions* l_instructions){
-    Instruction* instruction = l_instructions->PC;
-    l_instructions->PC = l_instructions->PC->next; //avant l'execution de l'instruction, il faut que PC pointe sur la suivante car il doit toujours pointer sur la prochaine instruction a effectuer.
-
-}
 
 
 void afficher_instruction(Instruction* instruction) {

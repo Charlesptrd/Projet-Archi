@@ -31,7 +31,6 @@ void afficher_liste_instructions(Instruction* PC[500]);
 
 
 void ajout_instruction(Liste_instructions* l_instructions,Instruction* instruction);
-void execution_instruction(Liste_instructions* l_instructions);
 
 typedef struct label {
     short int adr; //nombre entier signé sur 2 octets
