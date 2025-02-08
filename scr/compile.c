@@ -40,15 +40,14 @@ void ajout_instruction(Liste_instructions* l_instructions,Instruction* instructi
     return;
 }
 
-void tout_supprimer(Liste_instructions* l_instructions){
-    Instruction* courant = l_instructions->debut;
+void tout_supprimer(Instruction* PC[500]){
     Instruction* tmp;
-    while (courant != NULL){
-        tmp = courant;
-        courant = courant->next;
-        free(tmp);
+    int i=0;
+    while (PC[i] != NULL){
+        free(PC[i]);
+        i++;
     }
-    free(l_instructions);
+    return;
 }
 
 void execution_instruction(Liste_instructions* l_instructions){
@@ -68,11 +67,11 @@ void afficher_instruction(Instruction* instruction) {
     return;
 }
 
-void afficher_liste_instructions(Liste_instructions* l_instructions){
-    Instruction* courant = l_instructions->debut;
-    while (courant != NULL) {
-        afficher_instruction(courant);
-        courant = courant->next;
+void afficher_liste_instructions(Instruction* PC[500]){
+    int i=0;
+    while (PC[i] != NULL) {
+        afficher_instruction(PC[i]);
+        i++;
     }
     return;
 }
@@ -184,9 +183,10 @@ int calcul_saut_label(Instruction* depart, Label* label) {
     else return 0;
 }
 
-int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Liste_instructions* l_inctructions) { //s'il y a un probeleme lors de cette phase, erreur de synthace de code ... la fonction renverra null avec un message d'erreur.
+int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruction* PC[500]) { //s'il y a un probeleme lors de cette phase, erreur de synthace de code ... la fonction renverra null avec un message d'erreur.
     Ligne* ligne = texte->debut;
     Mot* mot;
+    int i=0;
     while (ligne != NULL) {
         mot = ligne->debut;
 
@@ -228,9 +228,10 @@ int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Liste_in
             
 
 
-        ajout_instruction(l_inctructions, instruction);
+        PC[i] = instruction;
 
         ligne = ligne->next;
+        i++;
     }
 
 

@@ -20,10 +20,10 @@ typedef struct {
     Instruction* SP;
 }Liste_instructions;
 Liste_instructions* creation_liste_instructions();
-void tout_supprimer(Liste_instructions* l_instructions);
+void tout_supprimer(Instruction* PC[500]);
 
 void afficher_instruction(Instruction* instruction);
-void afficher_liste_instructions(Liste_instructions* l_instructions);
+void afficher_liste_instructions(Instruction* PC[500]);
 
 
 void ajout_instruction(Liste_instructions* l_instructions,Instruction* instruction);
@@ -58,5 +58,5 @@ int calcul_saut_label(Instruction* depart, Label* label);
 
 int InstructionName_to_InstructionNB(char *str);
 
-int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Liste_instructions* l_inctructions);
+int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruction* PC[500]);
 #endif
