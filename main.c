@@ -21,7 +21,6 @@ int main(void) {
     }
 
 
-    //Liste_instructions* l_instructions = creation_liste_instructions();
     if (initialiser_Instructions_Depuis_Texte(texte, labels, PC) == 0) {printf("\033[31mErreur lors de l'initialisation des instructions\033[0m\n"); return 1;}
 
 
