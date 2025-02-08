@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "compile.h"
+
+typedef struct instruction Instruction;
 
 char *ajouter_caractere_str(char *str, char c);
 
@@ -52,6 +55,7 @@ int estVide_texte(Texte *t);
 void ajouter_ligne_texte(Texte *t, Ligne* l);
 void supprimer_derniere_ligne_texte(Texte *texte);
 Texte *transcription(char *name);
+int ecrire_programme_tranforme(Instruction* PC[500]);
 
 short int str_en_short_int(char *str);
 int est_int(char* str);

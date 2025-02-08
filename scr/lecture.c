@@ -3,7 +3,6 @@
 #include "lecture.h"
 
 
-
 Mot* creer_mot(char str[]) {
     Mot *res = malloc(sizeof(Mot));
     char *new = malloc(sizeof(char)*(strlen(str)+1));
@@ -216,6 +215,20 @@ short int str_en_short_int(char *str) {
 }
 
 
+int ecrire_programme_tranforme(Instruction* PC[500]) {
+    FILE* fichier = fopen("hexa.txt", "w");
+    if (!fichier) {
+        printf("\033[31mErreur lors de la création du fichier.\033[0m\n");
+        return 0;
+    }
+    int i=0;
+    while (PC[i] != NULL) {
+        fprintf(fichier, "%02d %04hx\n", PC[i]->code, PC[i]->donnée);
+        i++;
+    }
+    fclose(fichier);
+    return 1;
+}
 
 
 

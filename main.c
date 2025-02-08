@@ -5,7 +5,6 @@
 #include "compile.h"
 #include "execution.h"
 
-//caca
 
 int main(void) {
 
@@ -30,6 +29,9 @@ int main(void) {
 
 
     afficher_liste_instructions(PC);
+
+    printf("\033[30;4;47mEcriture du programme en language machine.\033[0m\n");
+    ecrire_programme_tranforme(PC);
 
     printf("\033[30;4;47mLibération de la mémoire\033[0m\n");
     supprimer_texte(texte);

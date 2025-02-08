@@ -2,6 +2,10 @@
 #define COMPILE
 #include "lecture.h"
 
+typedef struct texte Texte;
+typedef struct ligne Ligne;
+typedef struct mot Mot;
+
 
 
 typedef struct instruction{
