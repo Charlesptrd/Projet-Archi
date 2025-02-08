@@ -218,9 +218,11 @@ int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruct
         }
 
 
+        //instruction avec une valeur push#
         if (instruction->code == 4 || instruction->code == 11) {
             if (mot->next == NULL) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument (valeur entiere).\033[0m\n", ligne->adresse, instruction->code); free(instruction); return 0;}
-            if (est_int(mot->next->str) == 0 || est_char(mot->next->str[0])) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument de type valeur decimal.\033[0m\n", ligne->adresse, instruction->code); free(instruction); return 0;}
+            if (est_int(mot->next->str) == 0 || est_char(mot->next->str[0])) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument de type short int.\033[0m\n", ligne->adresse, instruction->code); free(instruction); return 0;}
+            if (est_int(mot->next->str) == -1) {printf("\033[35mWarning ligne %d : le code instruction : %d necessite un argument de type short int compris entre -32768 et 32767.\033[0m\n", ligne->adresse, instruction->code);}
             short int nb = str_en_short_int(mot->next->str);
             instruction->donnée = nb;
         }

@@ -144,7 +144,14 @@ int est_int(char* str) {
     char *endptr = NULL;
     long value = strtol(str, &endptr, 10);
 
+    if (value < -32768 || value >32767)  {
+        return -1; //si la valeur ne peut pas etre stockée sur 2 octer alors on affichera un waring de dépassement
+    }
+
     if (endptr == &str[strlen(str)]) return 1;
+
+
+
     return 0;
 }
 
@@ -206,10 +213,6 @@ Texte *transcription(char *name) {
 short int str_en_short_int(char *str) {
     char *endptr = str+strlen(str);
     long value = strtol(str, &endptr, 10);
-
-    if (value < -32768 || value > 32767) {
-        exit(EXIT_FAILURE);
-    }
 
     return (short int)value;
 }
