@@ -15,12 +15,13 @@ void afficher_PC(short int PC, Instruction* l_instruction[500]) {
 
 
 void afficher_memoire(short int memoire[5000], short int SP) {
-    if (SP == 0) {printf("\033[31mPile Vide\n\033[0m");printf("adr : %d -> %d\n", 1000, memoire[1000]); return;}
-    printf("\033[31mPile\n\033[0m");
+    if (SP == 0) {printf("\033[31mPile Vide\n\033[0m");}
+    else printf("\033[31mPile\n\033[0m");
     for (int i=0; i< SP; i++) {
         printf("adr : %d -> %d\n", i, memoire[i]);
     }
-    printf("adr : %d -> %d\n", 1000, memoire[1000]);
+    printf("adr : %d -> %d\n", 100, memoire[100]);
+    printf("adr : %d -> %d\n", 101, memoire[101]);
     return;
 }
 
