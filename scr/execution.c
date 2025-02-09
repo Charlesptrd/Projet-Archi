@@ -173,13 +173,17 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
         return 0;
     }
 
-    /*
+    
     else if (code == 12){ //rnd x
-        srandom(time(NULL));
-        memoire[SP++] = random()%(donnee);
+        srand(time(NULL));
+
+        short int nombre = (short)(rand() % 65536 - 32768);
+        nombre = nombre % donnee;
+        if (nombre*donnee < 0) nombre *= -1;
+        memoire[(*p_SP)++] = nombre;
         return 0;
     }
-    */
+    
 
     else if (code == 13){ //dup
         memoire[(*p_SP)] = memoire[(*p_SP)-1];
