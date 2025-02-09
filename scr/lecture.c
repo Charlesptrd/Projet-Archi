@@ -157,14 +157,17 @@ int est_int(char* str) {
 
 
 Texte *transcription(char *name) {
+    FILE *file = fopen(name, "r");
+    if (!file) {
+        printf("\033[31mErreur, impossible d'ouvrir le fichier : %s.\033[0m\n", name);
+        return NULL;
+    }
     int i=0;
     Texte *texte = creer_texte();
     Ligne* l = creer_ligne();
     l->adresse = i;
 
     ajouter_ligne_texte(texte, l);
-
-    FILE *file = fopen(name, "r");
     char c;
     int nb = 0;
     char *str = malloc(1);

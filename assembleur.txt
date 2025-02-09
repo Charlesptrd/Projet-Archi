@@ -1,11 +1,8 @@
      call fonction
-     call fonction 
-     call fonction 
      jmp fin
 fonction: rnd 100
-     pop 6000
-     write 6000
-     call fonction
+     pop 90
+     write 90
      ret
 
 fin: halt

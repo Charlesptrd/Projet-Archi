@@ -6,11 +6,19 @@
 #include "execution.h"
 
 
-int main() {
+int main(int argc, char *argv[]) {
 
-    char name[] = "assembleur.txt";
+    if (argc < 2) {
+        printf("\033[31mErreur : Aucun fichier spécifié.[0m\n");
+        printf("Utilisation : %s <nomfichier>\n", argv[0]);
+        return EXIT_FAILURE;  // Quitte le programme avec une erreur
+    }
+
+    printf("\033[32mFichier fourni : %s\033[0m\n", argv[1]);
+
     printf("\033[30;4;47mTranscription\033[0m\n");
-    Texte *texte = transcription(name);
+    Texte *texte = transcription(argv[1]);
+    if (texte == NULL) {return EXIT_FAILURE;}
     printf("\033[30;4;47mDétection des étiquettes\033[0m\n");
     Labels *labels = Detecter_Label(texte);
     printf("\033[30;4;47mCréation des instructions\033[0m\n");
@@ -53,12 +61,15 @@ int main() {
 
     printf("\033[30;4;47mExecution des instructions\033[0m\n");
 
-    while (execution_instruction(&PC, &SP, l_instructions, memoire) == 0) {
-        
+    int dernier;
+
+    do  {
+        dernier = execution_instruction(&PC, &SP, l_instructions, memoire);
         afficher_memoire(memoire, SP);
-        continue;
-    }
-    printf("\033[30;4;47mExecution terminee.\033[0m\n");
+    } while (dernier == 0);
+    if (dernier == 1)printf("\033[30;4;47mExecution terminee.\033[0m\n");
+    else printf("\033[31mErreur lors de la récupération des instructions\033[0m\n");
+    
 
 
 
