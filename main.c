@@ -21,7 +21,9 @@ int main() {
     }
 
 
-    if (initialiser_Instructions_Depuis_Texte(texte, labels, PC1) == 0) {printf("\033[31mErreur lors de la creation des instructions\033[0m\n"); return 1;}
+    if (initialiser_Instructions_Depuis_Texte(texte, labels, PC1) == 0) {printf("\033[31mErreur lors de la creation des instructions\033[0m\n");supprimer_texte(texte);
+    supprimer_labels(labels);
+    tout_supprimer(PC1); return 0;}
 
 
     printf("\033[32mSucces de la creation de la liste des intructions\033[0m\n");

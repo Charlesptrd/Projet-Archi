@@ -1,6 +1,15 @@
-debut: rnd 100
-     pop 10
-     write 10
+     call fonction
+     call fonction 
+     call fonction 
+     jmp fin
+fonction: rnd 100
+     pop 6000
+     write 6000
+     call fonction
+     ret
 
-     
+fin: halt
+
+
+
 

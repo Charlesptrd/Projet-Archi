@@ -15,13 +15,13 @@ void afficher_PC(short int PC, Instruction* l_instruction[500]) {
 
 
 void afficher_memoire(short int memoire[5000], short int SP) {
-    if (SP == 0) {printf("\033[31mPile Vide\n\033[0m");}
-    else printf("\033[31mPile\n\033[0m");
+    if (SP == 0) {printf("\033[31mPile Vide SP=%d\n\033[0m", SP);}
+    else printf("\033[31mPile SP=%d\n\033[0m", SP);
     for (int i=0; i< SP; i++) {
         printf("adr : %d -> %d\n", i, memoire[i]);
     }
-    printf("adr : %d -> %d\n", 100, memoire[100]);
-    printf("adr : %d -> %d\n", 101, memoire[101]);
+    //printf("adr : %d -> %d\n", 100, memoire[100]);
+    //printf("adr : %d -> %d\n", 101, memoire[101]);
     return;
 }
 
@@ -81,18 +81,20 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     }
 
     else if (code == 6){ //jnz adr
-        if (memoire[--(*p_SP)] != 0) {*p_PC += donnee;}
+        if (memoire[--(*p_SP)] != 0) {(*p_PC) += donnee;}
         return 0;
     }
 
     else if (code == 7){ //call adr
-        memoire[(*p_SP)++] = *p_PC+1;
-        *p_PC += donnee;
+        printf("APPELLE DE PROCEDURE\n");
+        memoire[(*p_SP)++] = (*p_PC);
+        (*p_PC) += donnee;
         return 0;
     }
 
     else if (code == 8){ //ret
-        *p_PC = memoire[--(*p_SP)];
+        printf("RETOUR DE PROCEDURE\n");
+        (*p_PC) = memoire[--(*p_SP)];
         return 0;
     }
 
