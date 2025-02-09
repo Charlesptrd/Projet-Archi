@@ -9,9 +9,9 @@
 int main(int argc, char *argv[]) {
 
     if (argc < 2) {
-        printf("\033[31mErreur : Aucun fichier spécifié.[0m\n");
+        printf("\033[31mErreur : Aucun fichier spécifié.\033[0m\n");
         printf("Utilisation : %s <nomfichier>\n", argv[0]);
-        return EXIT_FAILURE;  // Quitte le programme avec une erreur
+        return EXIT_FAILURE; 
     }
 
     printf("\033[32mFichier fourni : %s\033[0m\n", argv[1]);

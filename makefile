@@ -1,8 +1,8 @@
 all:
-	gcc -o main.exe main.c scr/*.c -Iinclude -W &&  ./main.exe assembleur.tx
+	gcc -o simulateur main.c scr/*.c -Iinclude -W &&  ./simulateur assembleur.tx
 
 leaks:
-	gcc -o main.exe main.c scr/*.c -Iinclude -W && leaks -atExit --list -- ./main.exe assembleur.tx
+	gcc -o simulateur main.c scr/*.c -Iinclude -W && leaks -atExit --list -- ./simulateur assembleur.tx
 
 overflow:
-	gcc -o main.exe main.c scr/*.c -Iinclude -W -fsanitize=address &&  ./main.exe assembleur.tx
+	gcc -o simulateur main.c scr/*.c -Iinclude -W -fsanitize=address &&  ./simulateur assembleur.tx
