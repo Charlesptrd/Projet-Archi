@@ -5,15 +5,6 @@ char *Instruction_Name[] = {"pop", "ipop", "push", "ipush", "push#", "jmp", "jnz
 int Instruction_nb[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 99};
 
 
-Liste_instructions* creation_liste_instructions(){
-    Liste_instructions* instructions = malloc(sizeof(Liste_instructions));
-    instructions->debut = NULL;
-    instructions->fin = NULL;
-    instructions->PC = NULL;
-    instructions->SP = NULL;
-    return instructions;
-}
-
 Instruction* creation_instruction(int adresse, char code, short donnée){
     Instruction* instruction = malloc(sizeof(Instruction));
     instruction->adresse = adresse;
@@ -22,22 +13,6 @@ Instruction* creation_instruction(int adresse, char code, short donnée){
     instruction->next = NULL;
     instruction->prev = NULL;
     return instruction;
-}
-
-void ajout_instruction(Liste_instructions* l_instructions,Instruction* instruction){
-    if (l_instructions->fin == NULL){ // la liste est vide.
-        l_instructions->debut = instruction;
-        l_instructions->fin = instruction;
-        l_instructions->PC = instruction;
-    }
-    
-    else { //s'il n'est pas vide, on ajoute a la fin.
-        instruction->prev = l_instructions->fin;
-        instruction->next = NULL;
-        l_instructions->fin->next = instruction;
-        l_instructions->fin = instruction;
-    }
-    return;
 }
 
 void tout_supprimer(Instruction* PC[500]){
@@ -92,7 +67,6 @@ Label *supprimer_label(Label* label) {
 
 Labels *creer_labels() {
     Labels *res = malloc(sizeof(Labels));
-    res->card = 0;
     res->debut = NULL;
     return res;
 }
@@ -100,7 +74,6 @@ void supprimer_labels(Labels* labels) {
     while (estVide_Labels(labels) == 0) {
 
         labels->debut = supprimer_label(labels->debut);
-        labels->card -= 1;
     } 
     free(labels);
     return;
@@ -109,7 +82,7 @@ void supprimer_labels(Labels* labels) {
 
 int estVide_Labels(Labels *l) {
 
-    if (l->card == 0) return 1;
+    if (l->debut == NULL) return 1;
     else return 0;
 }
 
@@ -117,7 +90,6 @@ void ajouter_label(Labels *labels, int adr, char *name) {
     Label *l = creer_label(adr, name);
     l->next = labels->debut;
     labels->debut = l;
-    labels->card +=1;
     return;
 }
 

@@ -1,5 +1,8 @@
-
-
-
-
+debut: read 100
+     read 101
+     push 100
+     push 101
+     ipop
+     write 210
+     halt
 

@@ -6,7 +6,7 @@
 #include "execution.h"
 
 
-int main(void) {
+int main() {
 
     char name[] = "assembleur.txt";
     printf("\033[30;4;47mTranscription\033[0m\n");

@@ -17,20 +17,11 @@ typedef struct instruction{
 }Instruction;
 Instruction* creation_instruction(int adresse, char code, short donnée);
 
-typedef struct {
-    Instruction* debut;
-    Instruction* fin;
-    Instruction* PC;
-    Instruction* SP;
-}Liste_instructions;
-Liste_instructions* creation_liste_instructions();
 void tout_supprimer(Instruction* PC[500]);
 
 void afficher_instruction(Instruction* instruction);
 void afficher_liste_instructions(Instruction* PC[500]);
 
-
-void ajout_instruction(Liste_instructions* l_instructions,Instruction* instruction);
 
 typedef struct label {
     short int adr; //nombre entier signé sur 2 octets
@@ -43,7 +34,6 @@ Label *supprimer_label(Label* label);
 
 typedef struct labels {
     Label *debut;
-    int card;
 } Labels;
 
 Labels *creer_labels();
