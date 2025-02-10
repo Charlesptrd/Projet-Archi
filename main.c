@@ -23,22 +23,23 @@ int main(int argc, char *argv[]) {
     Labels *labels = Detecter_Label(texte);
     printf("\033[30;4;47mCréation des instructions\033[0m\n");
 
-    Instruction* PC1[500];
+    Instruction* l_instructions_1[500];
     for (int i=0; i<500; i++) {
-        PC1[i] = NULL;
+        l_instructions_1[i] = NULL;
     }
 
 
-    if (initialiser_Instructions_Depuis_Texte(texte, labels, PC1) == 0) {printf("\033[31mErreur lors de la creation des instructions\033[0m\n");supprimer_texte(texte);
+    if (initialiser_Instructions_Depuis_Texte(texte, labels, l_instructions_1) == 0) {printf("\033[31mErreur lors de la creation des instructions\033[0m\n");
+    supprimer_texte(texte);
     supprimer_labels(labels);
-    tout_supprimer(PC1); return 0;}
+    tout_supprimer(l_instructions_1); return 0;}
 
-    ecrire_programme_tranforme(PC1);
+    ecrire_programme_tranforme(l_instructions_1);
 
     printf("\033[30;4;47mLibération de la mémoire de la premiere partie.\033[0m\n");
     supprimer_texte(texte);
     supprimer_labels(labels);
-    tout_supprimer(PC1);
+    tout_supprimer(l_instructions_1);
     printf("\033[30;4;47mDémarrage de l'éxécution\033[0m\n");
 
     Instruction* l_instructions[500];

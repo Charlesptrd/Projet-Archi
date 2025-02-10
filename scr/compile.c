@@ -153,11 +153,13 @@ int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruct
     Mot* mot;
     int i=0;
     int nb;
+    int fin = 0;
     while (ligne != NULL) {
         mot = ligne->debut;
 
         if (est_label(mot->str) == 1) {mot = mot->next;} // si le premier mot de la ligne est une etiquelle, on la passe car elle n'apparait pas dans le code machine mais serre a calculer les saut.
         nb = InstructionName_to_InstructionNB(mot->str);
+        if (nb ==99) fin = 1;
         if (nb == -1) {printf("\033[31mErreur ligne %d : l'instruction : %s n'existe pas.\033[0m\n", ligne->adresse+1, mot->str); return 0;}
         Instruction* instruction = creation_instruction(ligne->adresse, nb, 0);
 
@@ -202,6 +204,10 @@ int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruct
 
         ligne = ligne->next;
         i++;
+    }
+
+    if (fin == 0) {
+        printf("\033[35mWarning votre programme ne contient pas d'instruction de fin : 'halt'.\033[0m\n");
     }
 
 

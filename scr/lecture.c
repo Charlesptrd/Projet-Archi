@@ -174,13 +174,13 @@ Texte *transcription(char *name) {
     str[0] = '\0';
     while ((c=fgetc(file))) {
 
-        if (c!='\0' && c!=' ' && c != '\n' && c!= EOF) {
+        if (c!=' ' && c != '\n' && c!= EOF) {
             str = ajouter_caractere_str(str, c); 
             nb+=1;
 
         }
         
-        if (c == ' ' || c == '\n' || c == '\0' || c == EOF) {
+        if (c == ' ' || c == '\n' || c == EOF) {
             if (nb > 0) {
                 ajouter_mot_ligne(texte->fin, str);
                 nb = 0;
