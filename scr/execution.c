@@ -48,7 +48,7 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     if (!(*p_PC >= 0 && *p_PC < 500)) {printf("\033[31mErreur le pointeur d'instruction PC n'est pas valide.\033[0m\n"); return -1;}
     int code = l_instructions[*p_PC]->code;
     int donnee = l_instructions[*p_PC]->donnée;
-    afficher_PC(*p_PC, l_instructions);
+    //afficher_PC(*p_PC, l_instructions);
     (*p_PC) ++; //on incremente directement PC de maniere a ce qu'il indique toujours la prochaine instruction à executer.
     if (code == 0){ //pop x
         
@@ -224,7 +224,6 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     }
 
     else if (code == 99){ //halt
-        printf("cest le halt\n");
         return 1;
     }
     return -1;
