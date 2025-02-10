@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
     printf("\033[32mSucces de la creation de la liste des intructions\033[0m\n");
 
     printf("\033[30;4;47mEcriture du programme en language machine.\033[0m\n");
+    afficher_liste_instructions(PC1);
     ecrire_programme_tranforme(PC1);
 
     printf("\033[30;4;47mLibération de la mémoire de la premiere partie.\033[0m\n");
@@ -57,18 +58,19 @@ int main(int argc, char *argv[]) {
     short int SP = 0;
 
     if (extraire_instructions("hexa.txt", l_instructions) == 0) printf("\033[31mErreur lors de la récupération des instructions\033[0m\n");
-    afficher_liste_instructions(l_instructions);
 
     printf("\033[30;4;47mExecution des instructions\033[0m\n");
 
     int dernier;
+    afficher_liste_instructions(l_instructions);
 
     do  {
         dernier = execution_instruction(&PC, &SP, l_instructions, memoire);
-        afficher_memoire(memoire, SP);
+        //afficher_memoire(memoire, SP);
     } while (dernier == 0);
+    printf("FLAG 4\n");
     if (dernier == 1)printf("\033[30;4;47mExecution terminee.\033[0m\n");
-    else printf("\033[31mErreur lors de la récupération des instructions\033[0m\n");
+    else printf("\033[31mErreur lors de l'execution des instructions\033[0m\n");
     
 
 

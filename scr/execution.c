@@ -20,7 +20,7 @@ void afficher_memoire(short int memoire[5000], short int SP) {
     for (int i=0; i< SP; i++) {
         printf("adr : %d -> %d\n", i, memoire[i]);
     }
-    //printf("adr : %d -> %d\n", 100, memoire[100]);
+    printf("adr : %d -> %d\n", 10, memoire[10]);
     //printf("adr : %d -> %d\n", 101, memoire[101]);
     return;
 }
@@ -75,7 +75,7 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     }
 
     else if (code == 3){ //ipush
-        if ((*p_SP)-2 >= 0 && (*p_SP)-1 < 5000 && memoire[(*p_SP)-1] >= 0 && memoire[(*p_SP)-1] < 5000) {
+        if ((*p_SP)-1 >= 0 && (*p_SP)-1 < 5000 && memoire[(*p_SP)-1] >= 0 && memoire[(*p_SP)-1] < 5000) {
             memoire[(*p_SP)-1] = memoire[memoire[(*p_SP)-1]];
             return 0;}
         else printf("\033[31mErreur vous essayez d'acceder a un zone memoire de l'espace de travail qui n'existe pas.\033[0m\n");
@@ -118,7 +118,10 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     else if (code == 9){ //read x
         if (donnee >= 0 && donnee < 5000) {
             printf("Veuillez entrer une valeur : ");
-            scanf("%hd", &memoire[donnee]);
+            int a;
+            scanf("%d", &a);
+            memoire[donnee] = (short int) a;
+            if (!(a <= 32767 && a>= -32868)) {printf("\033[35mWarning le code instruction : %d necessite un argument de type short int compris entre -32768 et 32767.\033[0m\n", code);}
             return 0;}
         else printf("\033[31mErreur vous essayez d'acceder a un zone memoire de l'espace de travail qui n'existe pas.\033[0m\n");
     }
@@ -221,6 +224,7 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     }
 
     else if (code == 99){ //halt
+        printf("cest le halt\n");
         return 1;
     }
     return -1;

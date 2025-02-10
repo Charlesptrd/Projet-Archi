@@ -174,13 +174,13 @@ Texte *transcription(char *name) {
     str[0] = '\0';
     while ((c=fgetc(file))) {
 
-        if (c!='\0' && c!=' ' && c != '\n') {
+        if (c!='\0' && c!=' ' && c != '\n' && c!= EOF) {
             str = ajouter_caractere_str(str, c); 
             nb+=1;
 
         }
         
-        if (c == ' ' || c == '\n' || c == '\0') {
+        if (c == ' ' || c == '\n' || c == '\0' || c == EOF) {
             if (nb > 0) {
                 ajouter_mot_ligne(texte->fin, str);
                 nb = 0;
@@ -190,7 +190,7 @@ Texte *transcription(char *name) {
             }   
         }
 
-        if (c == '\n') {
+        if (c == '\n'|| c == EOF) {
             if (estVide_ligne(texte->fin)) {supprimer_derniere_ligne_texte(texte);}
             else i++;
             l = creer_ligne();

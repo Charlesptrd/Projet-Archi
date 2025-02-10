@@ -1,12 +1,6 @@
-     call fonction
-     jmp fin
-fonction: rnd 100
-     pop 90
-     write 90
-     ret
-
-fin: halt
-
-
-
-
+push# 10
+dup
+write 10
+ipop
+write 10
+halt

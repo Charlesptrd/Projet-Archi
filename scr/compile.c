@@ -154,11 +154,14 @@ int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruct
     Ligne* ligne = texte->debut;
     Mot* mot;
     int i=0;
+    int nb;
     while (ligne != NULL) {
         mot = ligne->debut;
 
         if (est_label(mot->str) == 1) {mot = mot->next;} // si le premier mot de la ligne est une etiquelle, on la passe car elle n'apparait pas dans le code machine mais serre a calculer les saut.
-        Instruction* instruction = creation_instruction(ligne->adresse, InstructionName_to_InstructionNB(mot->str), 0);
+        nb = InstructionName_to_InstructionNB(mot->str);
+        if (nb == -1) {printf("\033[31mErreur ligne %d : l'instruction : %s n'existe pas.\033[0m\n", ligne->adresse+1, mot->str); return 0;}
+        Instruction* instruction = creation_instruction(ligne->adresse, nb, 0);
 
         //instructions de saut : jmp, jnz, call
         if (instruction->code == 5 || instruction->code == 6 || instruction->code == 7) { 
