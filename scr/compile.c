@@ -10,8 +10,6 @@ Instruction* creation_instruction(int adresse, char code, short donnée){
     instruction->adresse = adresse;
     instruction->code = code;
     instruction->donnée = donnée;
-    instruction->next = NULL;
-    instruction->prev = NULL;
     return instruction;
 }
 

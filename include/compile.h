@@ -12,8 +12,6 @@ typedef struct instruction{
     int adresse; // 0 -> 4999
     char code; // code de l'instruction de 0 à 13 ou 99 pour signaler la fin (1 octet)
     short int donnée; // paramètres de l'instruction (2 octets)
-    struct instruction* next;
-    struct instruction* prev;
 }Instruction;
 Instruction* creation_instruction(int adresse, char code, short donnée);
 
