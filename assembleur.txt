@@ -1,2 +1,7 @@
 push# 1
 push# 1
+read 1000
+rnd -25
+pop 1000
+write 1000
+halt

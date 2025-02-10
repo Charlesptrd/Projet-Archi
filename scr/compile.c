@@ -172,27 +172,27 @@ int initialiser_Instructions_Depuis_Texte(Texte *texte, Labels* labels, Instruct
             else if (est_int(mot->next->str) == 1 ) instruction->donnée = str_en_short_int(mot->next->str);
             
             else {
-                printf("\033[31mErreur ligne %d : argument invalide pour un code instruction : %d.\033[0m\n", ligne->adresse, instruction->code);
+                printf("\033[31mErreur ligne %d : argument invalide pour un code instruction : %d.\033[0m\n", ligne->adresse+1, instruction->code);
                 free(instruction);
                 return 0;
             }
         }
 
-        //instruction avec adresse x : pop, push, read, write , rnd
-        if (instruction->code == 0 || instruction->code == 2 || instruction->code == 9 || instruction->code == 10 || instruction->code == 12) {
-            if (mot->next == NULL) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument (adresse).\033[0m\n", ligne->adresse, instruction->code); free(instruction); return 0;}
+        //instruction avec adresse x : pop, push, read, write
+        if (instruction->code == 0 || instruction->code == 2 || instruction->code == 9 || instruction->code == 10) {
+            if (mot->next == NULL) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument (adresse).\033[0m\n", ligne->adresse+1, instruction->code); free(instruction); return 0;}
 
             short int nb = str_en_short_int(mot->next->str);
-            if (nb < 0 || nb > 4999) {printf("\033[31mErreur ligne %d : une adresse doit etre contenue entre 0 et 4999.\033[0m\n", ligne->adresse); free(instruction); return 0;}
+            if (nb < 0 || nb > 4999) {printf("\033[31mErreur ligne %d : une adresse doit etre contenue entre 0 et 4999.\033[0m\n", ligne->adresse+1); free(instruction); return 0;}
             instruction->donnée = nb;
         }
 
 
         //instruction avec une valeur push#
-        if (instruction->code == 4 || instruction->code == 11) {
-            if (mot->next == NULL) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument (valeur entiere).\033[0m\n", ligne->adresse, instruction->code); free(instruction); return 0;}
-            if (est_int(mot->next->str) == 0 || est_char(mot->next->str[0])) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument de type short int.\033[0m\n", ligne->adresse, instruction->code); free(instruction); return 0;}
-            if (est_int(mot->next->str) == -1) {printf("\033[35mWarning ligne %d : le code instruction : %d necessite un argument de type short int compris entre -32768 et 32767.\033[0m\n", ligne->adresse, instruction->code);}
+        if (instruction->code == 4 || instruction->code == 11 || instruction->code == 12) {
+            if (mot->next == NULL) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument (valeur entiere).\033[0m\n", ligne->adresse+1, instruction->code); free(instruction); return 0;}
+            if (est_int(mot->next->str) == 0 || est_char(mot->next->str[0])) {printf("\033[31mErreur ligne %d : le code instruction : %d necessite un argument de type short int.\033[0m\n", ligne->adresse+1, instruction->code); free(instruction); return 0;}
+            if (est_int(mot->next->str) == -1) {printf("\033[35mWarning ligne %d : le code instruction : %d necessite un argument de type short int compris entre -32768 et 32767.\033[0m\n", ligne->adresse+1, instruction->code);}
             short int nb = str_en_short_int(mot->next->str);
             instruction->donnée = nb;
         }

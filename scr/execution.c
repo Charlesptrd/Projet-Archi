@@ -205,6 +205,7 @@ int execution_instruction(short int* p_PC , short int* p_SP, Instruction* l_inst
     else if (code == 12){ //rnd x
         if ((*p_SP)+1 >=0 && (*p_SP)+1 < 5000) {
             srand(time(NULL));
+            printf("Donnee du random : %d\n", donnee);
 
             short int nombre = (short)(rand() % 65536 - 32768);
             nombre = nombre % donnee;
