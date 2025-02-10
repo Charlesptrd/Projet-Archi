@@ -1,22 +1,3 @@
-read 1000    
-push# 1      
-pop 1001    
-
-loop: push 1000    ; Empiler le nombre
-push 1001    ; Empiler la valeur actuelle de la factorielle
-op 12        ; Multiplier les deux valeurs (12 est le code pour la multiplication)
-pop 1001     ; Dépiler le résultat et le stocker à l'adresse 1001
-
-push 1000    ; Empiler le nombre
-push# 1      ; Empiler 1
-op 11        ; Soustraire 1 du nombre (11 est le code pour la soustraction)
-pop 1000     ; Dépiler le résultat et le stocker à l'adresse 1000
-write 1000
-
-push 1000    ; Empiler le nombre
-push# 1      ; Empiler 1
-op 11        ; Tester si le nombre est inférieur à 1 (5 est le code pour <)
-jnz loop     ; Si le nombre est supérieur ou égal à 1, retourner à l'étiquette "loop"
-
-write 1001   ; Afficher la factorielle
-halt         ; Arrêter le programme
+push# 1
+pop 1000
+halt

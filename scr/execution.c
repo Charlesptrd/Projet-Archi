@@ -2,8 +2,8 @@
 
 
 
-void afficher_PC(short int PC, Instruction* l_instruction[500]) {
-    Instruction* instruction = l_instruction[PC];
+void afficher_PC(short int PC, Instruction* l_instructions[500]) {
+    Instruction* instruction = l_instructions[PC];
     printf("Instruction -> addr : ");
     printf("\033[32m%d\033[0m", instruction->adresse);
     printf(" code : ");
@@ -26,7 +26,7 @@ void afficher_memoire(short int memoire[5000], short int SP) {
 }
 
 
-int extraire_instructions(char* nom, Instruction* PC[500]) {
+int extraire_instructions(char* nom, Instruction* l_instructions[500]) {
     FILE* fichier = fopen(nom, "r");
     if (!fichier) {printf("\033[31mImpossible d'ouvrir le fichier '%s'.\033[0m\n", nom); return 0;}
     int code;
@@ -35,7 +35,7 @@ int extraire_instructions(char* nom, Instruction* PC[500]) {
     Instruction* courant;
     while (fscanf(fichier, "%x %x\n", &code, &donnee) != EOF) {
         courant = creation_instruction(i, code, (short int)donnee);
-        PC[i] = courant;
+        l_instructions[i] = courant;
         i++;
     }
     return 1;

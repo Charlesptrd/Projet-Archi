@@ -14,14 +14,14 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE; 
     }
 
-    //printf("\033[32mFichier fourni : %s\033[0m\n", argv[1]);
+    printf("\033[32mFichier fourni : %s\033[0m\n", argv[1]);
 
-    //printf("\033[30;4;47mTranscription\033[0m\n");
+    printf("\033[30;4;47mTranscription\033[0m\n");
     Texte *texte = transcription(argv[1]);
     if (texte == NULL) {return EXIT_FAILURE;}
-    //printf("\033[30;4;47mDétection des étiquettes\033[0m\n");
+    printf("\033[30;4;47mDétection des étiquettes\033[0m\n");
     Labels *labels = Detecter_Label(texte);
-    //printf("\033[30;4;47mCréation des instructions\033[0m\n");
+    printf("\033[30;4;47mCréation des instructions\033[0m\n");
 
     Instruction* PC1[500];
     for (int i=0; i<500; i++) {
@@ -33,10 +33,6 @@ int main(int argc, char *argv[]) {
     supprimer_labels(labels);
     tout_supprimer(PC1); return 0;}
 
-
-    //printf("\033[32mSucces de la creation de la liste des intructions\033[0m\n");
-
-    //printf("\033[30;4;47mEcriture du programme en language machine.\033[0m\n");
     ecrire_programme_tranforme(PC1);
 
     printf("\033[30;4;47mLibération de la mémoire de la premiere partie.\033[0m\n");
@@ -64,7 +60,6 @@ int main(int argc, char *argv[]) {
 
     do  {
         dernier = execution_instruction(&PC, &SP, l_instructions, memoire);
-        //afficher_memoire(memoire, SP);
     } while (dernier == 0);
     if (dernier == 1)printf("\033[30;4;47mExecution terminee.\033[0m\n");
     else printf("\033[31mErreur lors de l'execution des instructions\033[0m\n");
